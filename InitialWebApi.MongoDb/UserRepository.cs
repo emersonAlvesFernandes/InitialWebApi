@@ -10,9 +10,9 @@ namespace InitialWebApi.MongoDb
 
         public UserRepository(){}
 
-        public UserRepository(string conn, string db)
-            : base(conn, db)
-        {}
+        //public UserRepository(string conn, string db)
+        //    : base(conn, db)
+        //{}
 
         public User Add(User user)
         {

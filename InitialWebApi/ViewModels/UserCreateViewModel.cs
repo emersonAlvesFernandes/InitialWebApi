@@ -21,7 +21,7 @@ namespace InitialWebApi.ViewModels
         public UserCreateViewModelValidator()
         {
             RuleFor(r => r.Name).NotEmpty();
-            RuleFor(r => r.Name).NotEmpty().MinimumLength(11);
+            RuleFor(r => r.Cpf).NotEmpty().MinimumLength(11);
             RuleFor(r => r.Email).EmailAddress();
         }        
     }

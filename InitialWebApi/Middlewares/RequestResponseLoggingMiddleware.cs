@@ -15,6 +15,7 @@ namespace InitialWebApi.Middlewares
     public class RequestResponseLoggingMiddleware
     {
         private readonly RequestDelegate _next;
+
         private ILogRepository _logRepository;
 
         /// <summary>
@@ -29,20 +30,34 @@ namespace InitialWebApi.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            _logRepository = (ILogRepository)context.RequestServices.GetService(typeof(ILogRepository));
 
-            
-            var request = await FormatRequestAsync(context.Request);
-            
-            var originalBodyStream = context.Response.Body;
+            try
+            {
+                _logRepository = (ILogRepository)context.RequestServices.GetService(typeof(ILogRepository));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+
+            //var request = await FormatRequestAsync(context.Request);
+
+            //var originalBodyStream = context.Response.Body;
+
+            await _next(context);
 
             using (var responseBody = new MemoryStream())
             {
                 context.Response.Body = responseBody;
 
-                await _next(context);
+                //await _next(context);
 
                 var response = await FormatResponse(context.Response);
+
+                var request = await FormatRequestAsync(context.Request);
+
+                var originalBodyStream = context.Response.Body;
 
                 _logRepository.Save(new PipelineLogData(request, response));
 

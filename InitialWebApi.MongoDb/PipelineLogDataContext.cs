@@ -19,14 +19,14 @@ namespace InitialWebApi.MongoDb
             _db = _client.GetDatabase("InitialApiDb");
         }
 
-        public PipelineLogDataContext(string connectionString, string database)
-        {
-            ConnectionString = connectionString;
-            Database = database;
+        //public PipelineLogDataContext(string connectionString, string database)
+        //{
+        //    ConnectionString = connectionString;
+        //    Database = database;
 
-            _client = new MongoClient(ConnectionString);
-            _db = _client.GetDatabase(Database);
-        }
+        //    _client = new MongoClient(ConnectionString);
+        //    _db = _client.GetDatabase(Database);
+        //}
 
         public string ConnectionString { get; set; }
         public string Database { get; set; }

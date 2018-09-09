@@ -6,10 +6,10 @@ namespace InitialWebApi.MongoDb
 {
     public class LogRepository : PipelineLogDataContext, ILogRepository
     {
-        public LogRepository(string conn, string db)
-            : base(conn, db)
-        {
-        }
+        //public LogRepository(string conn, string db)
+        //    : base(conn, db)
+        //{
+        //}
 
         public void Save(PipelineLogData logItem)
         {

@@ -31,7 +31,7 @@ namespace InitialWebApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "Initial Web Api", Version = "v1" });
             });
-
+            
             services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
         }
@@ -56,8 +56,7 @@ namespace InitialWebApi
 
             //app.UseMiddleware(typeof(LogMiddleware));
             app.UseMiddleware(typeof(RequestResponseLoggingMiddleware));
-            
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection();            
             app.UseMvc();
         }
     }

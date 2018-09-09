@@ -1,6 +1,8 @@
 ﻿using InitialWebApi.Model.Contracts;
 using InitialWebApi.Model.Models;
+using InitialWebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace InitialWebApi.Controllers
@@ -17,15 +19,23 @@ namespace InitialWebApi.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAsync()
             => Ok(await Task.Run(() => _userData.Get()));
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAsync(int id)
             => Ok(await Task.Run(() => _userData.GetById(id)));
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] User userCreate)
-            => Ok(await Task.Run(() => _userData.Add(userCreate)));
+        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> PostAsync([FromBody] UserCreateViewModel userCreate)
+        {
+            var user = new User(userCreate.Name, userCreate.Cpf, userCreate.Email);
+
+            return Ok(await Task.Run(() => _userData.Add(user)));
+        }
+        
     }
 }

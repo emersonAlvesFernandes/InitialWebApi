@@ -9,14 +9,14 @@ namespace InitialWebApi.Model.Models
 
         public User(string name, string cpf, string email)
         {
-            Id = Guid.NewGuid();
+            //Id = Guid.NewGuid();
             Name = name;
             Cpf = cpf;
             Email = email;
         }
 
         public ObjectId _id { get; set; }
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
         public string Name { get; set; }
         public string Cpf { get; set; }
         public string Email { get; set; }
