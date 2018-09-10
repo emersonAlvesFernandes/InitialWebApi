@@ -13,3 +13,5 @@ Docker para subida do container MongoDb.
 > docker build -t mongo .
 
 > docker run -it -p 27017:27017 mongo
+
+TODO: Utilizar o Automapper para realizar a transformação das view models em entidades e vice versa.
